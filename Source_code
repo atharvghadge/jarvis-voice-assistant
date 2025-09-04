@@ -1,0 +1,63 @@
+import speech_recognition as sr
+import pyttsx3
+import webbrowser
+
+# Initialize recognizer and text-to-speech engine
+recognizer = sr.Recognizer()
+engine = pyttsx3.init()
+
+# Text-to-Speech
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Command processor
+def process_command(command):
+    command = command.lower()
+
+    if "open google" in command:
+        speak("Opening Google")
+        webbrowser.open("https://www.google.com")
+
+    elif "open youtube" in command:
+        speak("Opening YouTube")
+        webbrowser.open("https://www.youtube.com")
+
+    elif "open linkedin" in command:
+        speak("Opening LinkedIn")
+        webbrowser.open("https://www.linkedin.com")
+
+    elif "open instagram" in command:
+        speak("Opening Instagram")
+        webbrowser.open("https://www.instagram.com")
+
+    else:
+        speak("Sorry, I didn't understand that command.")
+
+# Main program
+if __name__ == "__main__":
+    speak("Initializing JARVIS...")
+
+    while True:
+        try:
+            with sr.Microphone() as source:
+                print("Listening for wake word...")
+                recognizer.adjust_for_ambient_noise(source, duration=1)
+                audio = recognizer.listen(source, timeout=4, phrase_time_limit=4)
+                print("Recognizing...")
+                command = recognizer.recognize_google(audio)
+                print("You said:", command)
+
+            if command.lower() == "hey hey":
+                speak("Yes?")
+                with sr.Microphone() as source:
+                    print("JARVIS is active. Listening for command...")
+                    recognizer.adjust_for_ambient_noise(source, duration=1)
+                    audio = recognizer.listen(source, timeout=4, phrase_time_limit=4)
+                    command = recognizer.recognize_google(audio)
+                    print("Command received:", command)
+
+                    process_command(command)
+
+        except Exception as e:
+            print("Error:", e)
