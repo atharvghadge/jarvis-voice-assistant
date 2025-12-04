@@ -22,18 +22,19 @@ It listens for a wake word (**"hey jarvis"**) and performs simple voice-based ac
    venv\Scripts\activate
    # macOS / Linux
    source venv/bin/activate
-Install dependencies:
+   
+## Install dependencies:
 
 pip install -r requirements.txt
 
-⚠️ Windows PyAudio Note
+## ⚠️ Windows PyAudio Note
 
 If PyAudio fails to install, run:
 
 pip install pipwin
 pipwin install pyaudio
 
-▶️ Usage
+## ▶️ Usage
 
 Run the program:
 
@@ -55,13 +56,13 @@ open instagram
 
 quit / exit / stop
 
-📁 Project Files
+## 📁 Project Files
 
 main.py — main source code
 
 requirements.txt — required libraries
 
-📌 Notes
+## 📌 Notes
 
 This is a beginner-friendly voice assistant project and can be easily extended with new features such as:
 
